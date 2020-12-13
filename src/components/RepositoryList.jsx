@@ -69,12 +69,14 @@ const RepositoryList = () => {
     );
   };
   return (
-    <FlatList
-      data={repositories}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
-      keyExtractor={(repo) => repo.id}
-    />
+    <View>
+      <FlatList
+        data={repositories}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={renderItem}
+        keyExtractor={(repo) => repo.id}
+      />
+    </View>
   );
 };
 

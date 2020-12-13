@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="26d9f983-e5c2-4963-9460-58edaa85af99" name="Default Changelist" comment="" />
+    <list default="true" id="26d9f983-e5c2-4963-9460-58edaa85af99" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppBarTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppBarTab.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RepositoryList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RepositoryList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,5 +43,15 @@
       <updated>1607451507033</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="533" y="237" key="FileChooserDialogImpl" timestamp="1607892405656">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state x="533" y="237" key="FileChooserDialogImpl/0.0.1504.963@0.0.1504.963" timestamp="1607892405656" />
+    <state x="427" y="187" key="NewModule_or_Project.wizard" timestamp="1607892457284">
+      <screen x="0" y="0" width="1504" height="963" />
+    </state>
+    <state x="427" y="187" key="NewModule_or_Project.wizard/0.0.1504.963@0.0.1504.963" timestamp="1607892457284" />
   </component>
 </project>

@@ -1,14 +1,16 @@
 import React from 'react';
-import { TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Text from './Text';
+
+const styles = StyleSheet.create({
+  padding: {
+    padding: 10
+  }
+});
 
 const AppBarTab = ({name}) => {
   return (
-    <TouchableWithoutFeedback onPress={() => alert('Pressed!')}>
-      <View>
-        <Text color='textReverse' fontSize='heading' fontWeight='bold'>{name}</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <Text color='textReverse' fontSize='heading' fontWeight='bold' style={styles.padding}>{name}</Text>
   );
 };
 
