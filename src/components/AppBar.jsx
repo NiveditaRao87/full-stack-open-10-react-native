@@ -8,7 +8,7 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   container: {
     paddingTop: Constants.statusBarHeight + 20,
-    backgroundColor: theme.backgroundColors.appBar,
+    backgroundColor: theme.colors.darkBckgrnd,
     height: Constants.statusBarHeight + 70,
     paddingLeft: 10,
     flexDirection: 'row',
@@ -20,16 +20,8 @@ const AppBar = () => {
   return (
   <View style={styles.container}>
     <ScrollView horizontal>
-      <Link to='/'>
-        <View>
-          <AppBarTab name='Repositories' />
-        </View>
-      </Link>
-      <Link to='/signin'>
-        <View>
-          <AppBarTab name='Sign In' />
-        </View>
-      </Link>
+      <Link to="/" component={AppBarTab} name='Repositories' />
+      <Link to="/sign-in" component={AppBarTab} name='Sign in' />
     </ScrollView>
   </View>
   );

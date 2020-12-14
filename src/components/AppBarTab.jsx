@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 import Text from './Text';
 
 const styles = StyleSheet.create({
@@ -8,9 +8,16 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppBarTab = ({name}) => {
+const AppBarTab = ({name, ...props}) => {
   return (
-    <Text color='textReverse' fontSize='heading' fontWeight='bold' style={styles.padding}>{name}</Text>
+    <TouchableWithoutFeedback  {...props}>
+      <View>
+        <Text color='textReverse' fontSize='heading' fontWeight='bold' style={styles.padding}>
+          {name}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+    
   );
 };
 

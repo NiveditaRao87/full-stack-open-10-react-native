@@ -6,7 +6,7 @@ import theme from '../theme';
 const styles = StyleSheet.create({
   separator: {
     height: 10,
-    backgroundColor: theme.backgroundColors.main,
+    backgroundColor: theme.colors.faded,
   },
 });
 

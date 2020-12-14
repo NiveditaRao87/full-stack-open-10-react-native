@@ -9,7 +9,8 @@ const theme = {
     textFaded: '#707070',
     light: 'white',
     faded: '#e1e4e8',
-    danger: '#a20a0a'
+    danger: '#a20a0a',
+    darkBckgrnd: '#24292e'
   },
   fontSizes: {
     body: 14,
@@ -26,11 +27,6 @@ const theme = {
   fontWeights: {
     normal: '400',
     bold: '700',
-  },
-  backgroundColors: {
-    appBar: '#24292e',
-    cards: 'white',
-    main: '#e1e4e8',
   }
 };
 

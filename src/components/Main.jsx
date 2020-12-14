@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     flexShrink: 1,
-    backgroundColor: theme.backgroundColors.main,
+    backgroundColor: theme.colors.faded,
   },
 });
 
@@ -22,7 +22,7 @@ const Main = () => {
         <Route path="/" exact>
           <RepositoryList />
         </Route>
-        <Route path='/signin'>
+        <Route path='/sign-in'>
           <SignIn />
         </Route>
         <Redirect to="/" />

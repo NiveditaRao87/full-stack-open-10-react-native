@@ -6,7 +6,7 @@ import theme from '../theme';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.backgroundColors.cards,
+    backgroundColor: theme.colors.light,
     marginBottom: 15,
     paddingHorizontal: 20,
     paddingVertical: 10,
