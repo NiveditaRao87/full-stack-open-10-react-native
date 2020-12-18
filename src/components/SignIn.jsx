@@ -38,11 +38,9 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   username: yup
     .string()
-    // .min(1, 'Weight must be greater or equal to 1')
     .required('Username is required'),
   password: yup
     .string()
-    // .min(0.5, 'Height must be greater or equal to 0.5')
     .required('Password is required'),
 });
 
