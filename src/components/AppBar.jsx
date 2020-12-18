@@ -1,8 +1,11 @@
-import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import { View, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { Link } from 'react-router-native';
+import { useQuery, useApolloClient } from '@apollo/client';
 import Constants from 'expo-constants';
-import AppBarTab from './AppBarTab';
+import { AUTHORIZED_USER } from '../graphql/queries';
+import AuthStorageContext from '../contexts/AuthStorageContext';
+import Text from './Text';
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -13,15 +16,49 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  padding: {
+    padding: 10
   }
 });
 
+const AppBarTab = ({name, ...props}) => {
+  return (
+    <TouchableWithoutFeedback  {...props}>
+      <View>
+        <Text color='textReverse' fontSize='heading' fontWeight='bold' style={styles.padding}>
+          {name}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+    
+  );
+};
+
 const AppBar = () => {
+  const { data } = useQuery(AUTHORIZED_USER);
+  const [signedIn, setSignedIn] = useState(false);
+  const authStorage = useContext(AuthStorageContext);
+  const apolloClient = useApolloClient();
+
+  const handleSignOut = async () => {
+    setSignedIn(false);
+    await authStorage.removeAccessToken();
+    apolloClient.resetStore();
+  };
+
+  useEffect(()=>{
+    setSignedIn(data && data.authorizedUser);
+  },[data]);
+  
   return (
   <View style={styles.container}>
     <ScrollView horizontal>
       <Link to="/" component={AppBarTab} name='Repositories' />
-      <Link to="/sign-in" component={AppBarTab} name='Sign in' />
+      {signedIn 
+        ? <AppBarTab name='Sign out' onPress={handleSignOut} />
+        : <Link to="/sign-in" component={AppBarTab} name='Sign in' />
+      }
     </ScrollView>
   </View>
   );
