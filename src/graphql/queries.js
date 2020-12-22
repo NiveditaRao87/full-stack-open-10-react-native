@@ -16,6 +16,32 @@ export const GET_REPOSITORIES = gql`
   ${REPOSITORY_BASE_FIELDS}
 `;
 
+export const GET_REPOSITORY = gql`
+query repository($id: ID!){
+    repository(id: $id){
+      ...RepositoryBaseFields
+      ratingAverage
+      reviewCount
+      url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              ...UserBaseFields
+            }
+          }
+        }
+      }
+    }
+  }
+  ${REPOSITORY_BASE_FIELDS}
+  ${USER_BASE_FIELDS}
+`;
+
 export const AUTHORIZED_USER = gql`
 query {
   authorizedUser {

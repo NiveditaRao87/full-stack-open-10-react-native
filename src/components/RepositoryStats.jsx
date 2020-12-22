@@ -16,7 +16,7 @@ const RepositoryStats = ({name, stats}) => {
 
   return (
     <View style={styles.container}>
-      <Text fontWeight='bold' >{stats > 1000 ? `${(Math.ceil(stats/100)/10)}k`: stats}</Text>
+      <Text fontWeight='bold' testID='repo-stats'>{stats > 1000 ? `${(Math.floor(stats/100)/10)}k`: stats}</Text>
       <Text color='textFaded'>{name}</Text>
     </View>
   );

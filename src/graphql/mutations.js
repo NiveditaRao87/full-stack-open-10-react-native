@@ -18,3 +18,24 @@ mutation authorize($username: String!, $password: String! ){
   }
   ${USER_BASE_FIELDS}
 `;
+
+export const CREATE_REVIEW= gql`
+mutation createReview(
+  $repositoryName: String!,
+  $repositoryOwner: String!,
+  $rating: Int!,
+  $reviewText: String) {
+  createReview(
+    review: {
+      repositoryName: $repositoryName,
+      ownerName: $repositoryOwner,
+      rating: $rating,
+      text: $reviewText
+    }
+  ) {
+      id
+      repositoryId
+      createdAt
+    }
+  }
+`;
