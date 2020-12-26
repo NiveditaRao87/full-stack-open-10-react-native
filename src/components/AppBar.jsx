@@ -37,29 +37,28 @@ const AppBarTab = ({name, ...props}) => {
 
 const AppBar = () => {
   const { data } = useQuery(AUTHORIZED_USER);
-  // const [signedIn, setSignedIn] = useState(false);
   const authStorage = useContext(AuthStorageContext);
   const apolloClient = useApolloClient();
   const authorizedUser = data ? data.authorizedUser : undefined;
 
   const handleSignOut = async () => {
-    // setSignedIn(false);
     await authStorage.removeAccessToken();
     apolloClient.resetStore();
   };
-
-  // useEffect(()=>{
-  //   setSignedIn(data && data.authorizedUser);
-  // },[data]);
   
   return (
   <View style={styles.container}>
     <ScrollView horizontal>
       <Link to="/" component={AppBarTab} name='Repositories' />
-      {authorizedUser && <Link to="/create-review" component={AppBarTab} name='Create review' />}
       {authorizedUser 
-        ? <AppBarTab name='Sign out' onPress={handleSignOut} />
-        : <Link to="/sign-in" component={AppBarTab} name='Sign in' />
+        ? <>
+            <Link to="/create-review" component={AppBarTab} name='Create review' />
+            <AppBarTab name='Sign out' onPress={handleSignOut} />
+          </>
+        : <>
+            <Link to="/sign-in" component={AppBarTab} name='Sign in' /> 
+            <Link to="/sign-up" component={AppBarTab} name='Sign up' /> 
+          </>
       }
     </ScrollView>
   </View>

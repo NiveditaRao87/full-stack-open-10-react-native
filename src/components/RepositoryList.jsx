@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useHistory } from 'react-router-native';
 import RepositoryItem from './RepositoryItem';
@@ -14,7 +14,11 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export const RepositoryListContainer = ({ repositories })  => {
+const RepositoryOrder = () => {
+  return null;
+}
+
+export const RepositoryListContainer = ({ repositories, onOrderChange })  => {
 
   const history = useHistory();
 
@@ -40,15 +44,23 @@ export const RepositoryListContainer = ({ repositories })  => {
         ItemSeparatorComponent={ItemSeparator}
         renderItem={renderItem}
         keyExtractor={(repo) => repo.id}
+        ListHeaderComponent={() => <RepositoryOrder onOrderChange={onOrderChange} />}
       />
     </View>
   );
 };
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  const [orderBy, setOrderBy] = useState();
+  const [orderDirection, setOrderDirection] = useState();
+  const { repositories } = useRepositories(orderBy, orderDirection);
 
-  return <RepositoryListContainer repositories={repositories} />;
+  const handleOrderChange = (orderSelect) => {
+    setOrderBy(orderSelect === 'latest' ? 'CREATED_AT' : 'RATING_AVERAGE');
+    setOrderDirection(orderSelect === 'lowest' ? 'ASC' : 'DESC');
+  };
+
+  return <RepositoryListContainer repositories={repositories} onOrderChange={handleOrderChange} />;
 };
 
 export default RepositoryList;
