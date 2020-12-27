@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, TouchableOpacity } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { useHistory } from 'react-router-native';
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
@@ -14,8 +15,16 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryOrder = () => {
-  return null;
+const RepositoryOrder = ({onOrderChange}) => {
+  return (
+    <RNPickerSelect
+      onValueChange={(value) => onOrderChange(value)}
+      items={[
+        { label: 'Latest repositories', value: 'latest' },
+        { label: 'Highest rated repositories', value: 'highest' },
+        { label: 'Lowest rated repositories', value: 'lowest' },
+      ]}
+);
 }
 
 export const RepositoryListContainer = ({ repositories, onOrderChange })  => {
@@ -51,7 +60,7 @@ export const RepositoryListContainer = ({ repositories, onOrderChange })  => {
 };
 
 const RepositoryList = () => {
-  const [orderBy, setOrderBy] = useState();
+  const [orderBy, setOrderBy] = useState('CREATED_AT');
   const [orderDirection, setOrderDirection] = useState();
   const { repositories } = useRepositories(orderBy, orderDirection);
 
