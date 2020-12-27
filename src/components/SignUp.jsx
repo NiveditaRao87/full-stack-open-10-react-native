@@ -106,8 +106,6 @@ const SignUp = () => {
           password
         }
       });
-      console.log(data);
-      console.log(username, password);
       await signIn({ username, password });
       history.push('/');
     } catch (e) {

@@ -75,7 +75,6 @@ const Repository = () => {
   if(loading) {
     return <Text>Loading...</Text>;
   }
-  console.log(data);
 
   return (
     <FlatList
