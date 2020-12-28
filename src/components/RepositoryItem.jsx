@@ -39,6 +39,11 @@ const styles = StyleSheet.create({
 });
 
 const RepositoryItem = ({repo, showUrl}) => {
+
+  if(!repo){
+    return null
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.flexContainer}>

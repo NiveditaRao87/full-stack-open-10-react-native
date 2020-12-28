@@ -24,6 +24,11 @@ const theme = {
       ios: 'Arial',
       default: 'System'
     }),
+    closeButton: Platform.select({
+      android: 'monospace',
+      ios: 'Arial',
+      default: 'System'
+    })
   },
   fontWeights: {
     normal: '400',

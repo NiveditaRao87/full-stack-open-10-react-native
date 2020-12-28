@@ -23,3 +23,12 @@ export const USER_BASE_FIELDS = gql`
     createdAt
   }
 `;
+
+export const PAGE_INFO_FIELDS = gql`
+  fragment PageInfoFields on PageInfo {
+    hasNextPage
+    totalCount
+    startCursor
+    endCursor
+  }
+`;

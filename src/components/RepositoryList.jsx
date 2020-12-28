@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FlatList, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useHistory } from 'react-router-native';
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: theme.colors.light,
-    fontSize: 16,
     margin: 10,
     display: 'flex',
     flexDirection: 'row',
@@ -24,15 +23,12 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flexGrow: 9,
-    borderWidth: 0
+    borderWidth: 0,
+    fontSize: 16,
   },
   closeButton: {
     fontSize: 20,
-    fontFamily: Platform.select({
-      android: 'monospace',
-      ios: 'Arial',
-      default: 'System'
-    })
+    fontFamily: theme.fonts.closeButton
   },
   closeButtonParent: {
     justifyContent: 'center',
@@ -103,6 +99,8 @@ export class RepositoryListContainer extends React.Component {
   
   render() {
 
+  console.log('Rendered repositoryList')
+
     return (
       <FlatList
         data={this.props.repositories
@@ -112,6 +110,8 @@ export class RepositoryListContainer extends React.Component {
         renderItem={this.renderItem}
         keyExtractor={(repo) => repo.id}
         ListHeaderComponent={this.renderHeader}
+        onEndReached={this.props.onEndReach}
+        onEndReachedThreshold={0.5}
       />
     );
   }
@@ -123,7 +123,12 @@ const RepositoryList = () => {
   const [order, setOrder] = useState('latest');
   const [search, setSearch] = useState('');
   const [searchKeyword] = useDebounce(search, 500);
-  const { repositories } = useRepositories(orderBy, orderDirection, searchKeyword);
+  const { repositories, fetchMore } = useRepositories({
+    orderBy, 
+    orderDirection, 
+    searchKeyword,
+    first: 4
+    });
   const history = useHistory();
 
   const handleOrderChange = (orderSelect) => {
@@ -132,6 +137,10 @@ const RepositoryList = () => {
     setOrderDirection(orderSelect === 'lowest' ? 'ASC' : 'DESC');
   };
 
+  const handleEndReach = () => {
+    fetchMore();
+  }
+
   return <RepositoryListContainer 
            repositories={repositories} 
            onOrderChange={handleOrderChange}
@@ -139,6 +148,7 @@ const RepositoryList = () => {
            order={order}
            onSearch={search => setSearch(search)}
            redirect={nextRoute => history.push(nextRoute)}
+           onEndReach={handleEndReach}
            />;
 };
 

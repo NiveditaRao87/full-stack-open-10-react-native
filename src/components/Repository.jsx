@@ -1,9 +1,8 @@
 import React from 'react';
 import { View , FlatList, StyleSheet } from 'react-native';
-import { useQuery } from '@apollo/react-hooks';
-import { format } from 'date-fns';
-import { GET_REPOSITORY } from '../graphql/queries';
 import { useParams } from 'react-router-native';
+import { format } from 'date-fns';
+import useRepository from '../hooks/useRepository';
 import RepositoryItem from './RepositoryItem';
 import Text from './Text';
 import theme from '../theme';
@@ -60,29 +59,38 @@ const ReviewItem = ({ review }) => {
   );
 };
 
-const Repository = () => {
-  const id = useParams().id;
-
-  const { data, loading } = useQuery(GET_REPOSITORY,{
-    fetchPolicy: 'cache-and-network',
-    variables: { id }
-  });
-  const reviews = data && data.repository.reviews;
+const ReviewList = ({ repository, onEndReached }) => {
+  const reviews = repository && repository.reviews;
   const reviewNodes = reviews
     ? reviews.edges.map(edge => edge.node)
     : [];
-
-  if(loading) {
-    return <Text>Loading...</Text>;
-  }
 
   return (
     <FlatList
       data={reviewNodes}
       renderItem={({ item }) => <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}
-      ListHeaderComponent={() => <RepositoryInfo repository={data.repository} />}
-      // ...
+      ListHeaderComponent={() => <RepositoryInfo repository={repository} />}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
+    />
+  );
+}
+
+const Repository = () => {
+  const id = useParams().id;
+
+  const { repository, fetchMore } = useRepository({
+    id,
+    first: 3
+    });
+
+  console.log('Rendered Repository');
+
+  return (
+    <ReviewList
+      repository={repository}
+      onEndReached={() =>  fetchMore()}
     />
   );
 
