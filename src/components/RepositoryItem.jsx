@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 const RepositoryItem = ({repo, showUrl}) => {
 
   if(!repo){
-    return null
+    return null;
   }
 
   return (
@@ -62,7 +62,10 @@ const RepositoryItem = ({repo, showUrl}) => {
           <RepositoryStats name='Reviews' stats={repo.reviewCount} testID='repo-reviews' />
           <RepositoryStats name='Rating' stats={repo.ratingAverage} testID='repo-rating' />
         </View>
-      {showUrl && <Button onPress={() => Linking.openURL(repo.url)}>Open in GitHub</Button>}
+      {showUrl && 
+        <Button fontSize='subheading' onPress={() => Linking.openURL(repo.url)}>
+          Open in GitHub
+        </Button>}
     </View>
   );
 };

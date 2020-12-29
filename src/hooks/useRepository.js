@@ -34,7 +34,6 @@ const useRepository = (variables) => {
             },
           }
         };
-        data && console.log(data.repository.reviews.pageInfo)
         return nextResult;
       },
     });

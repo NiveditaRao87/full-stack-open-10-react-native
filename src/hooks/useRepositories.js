@@ -32,8 +32,6 @@ const useRepositories = (variables) => {
           },
         };
 
-
-        data && console.log(data.repositories.pageInfo)
         return nextResult;
       },
     });

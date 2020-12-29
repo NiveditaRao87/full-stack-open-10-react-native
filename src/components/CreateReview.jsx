@@ -82,7 +82,13 @@ const ReviewForm =  ({ onSubmit }) => {
         testID='reviewTextField'
         multiline
       />
-      <Button onPress={onSubmit} style={styles.button}>Create review</Button>
+      <Button 
+        onPress={onSubmit}
+        fontSize='subheading'
+        style={styles.button}
+      >
+        Create review
+      </Button>
     </View>
   );
 };

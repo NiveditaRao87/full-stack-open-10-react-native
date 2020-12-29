@@ -59,7 +59,13 @@ const SignInForm =  ({ onSubmit }) => {
         secureTextEntry 
         testID='passwordField'
         />
-      <Button onPress={onSubmit} style={styles.button}>Sign in</Button>
+      <Button 
+        onPress={onSubmit}
+        style={styles.button}
+        fontSize='heading'
+      >
+        Sign in
+      </Button>
     </View>
   );
 };
@@ -85,7 +91,7 @@ const SignIn = () => {
     const { username, password } = values;
 
     try {
-      const {data} = await signIn({ username, password });
+      await signIn({ username, password });
       history.push('/');
     } catch (e) {
       console.log(e);

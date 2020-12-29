@@ -11,22 +11,24 @@ const styles = StyleSheet.create({
     minWidth: 64,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: theme.colors.primary,
     borderRadius: theme.roundness,
-  },
-  text: {
-    color: 'white',
-    fontSize: theme.fontSizes.heading,
-  },
+  }
 });
 
 const Button = ({ children, style, ...props }) => {
-  const buttonStyle = [styles.container, style];
+  const buttonStyle = [
+    styles.container, 
+    style,
+    !props.danger 
+      ? { backgroundColor: theme.colors.primary }
+      : { backgroundColor: theme.colors.danger },
+  ];
+
 
   return (
     <TouchableWithoutFeedback {...props}>
       <View style={buttonStyle}>
-        <Text style={styles.text} fontWeight="bold">{children}</Text>
+        <Text color='textReverse' fontSize={props.fontSize} fontWeight="bold">{children}</Text>
       </View>
     </TouchableWithoutFeedback>
   );

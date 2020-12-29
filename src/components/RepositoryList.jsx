@@ -99,8 +99,6 @@ export class RepositoryListContainer extends React.Component {
   
   render() {
 
-  console.log('Rendered repositoryList')
-
     return (
       <FlatList
         data={this.props.repositories

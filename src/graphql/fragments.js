@@ -32,3 +32,12 @@ export const PAGE_INFO_FIELDS = gql`
     endCursor
   }
 `;
+
+export const REVIEW_BASE_FIELDS = gql`
+  fragment ReviewBaseFields on Review {
+    id
+    text
+    rating
+    createdAt
+  }
+`;

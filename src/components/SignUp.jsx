@@ -73,7 +73,13 @@ const SignUpForm =  ({ onSubmit }) => {
         secureTextEntry 
         testID='passwordConfirmationField'
       />
-      <Button onPress={onSubmit} style={styles.button}>Sign up</Button>
+      <Button 
+        onPress={onSubmit}
+        style={styles.button}
+        fontSize='heading'
+      >
+        Sign up
+      </Button>
     </View>
   );
 };
@@ -100,7 +106,7 @@ const SignUp = () => {
     const { username, password } = values;
 
     try {
-      const {data} = await createUser({
+      await createUser({
         variables: {
           username,
           password
